@@ -1,28 +1,22 @@
 ---
 theme: ./
-title: Aurora Theme Demo
+title: Aurora Theme
 transition: morph
 ---
 
-# Aurora Theme
+# Aurora
 
-A modern, minimal Slidev theme with animated backgrounds
-
-<div class="pt-12">
-  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" flex="~ justify-center items-center gap-2" hover="bg-white bg-opacity-10">
-    Press Space for next page <div class="i-carbon:arrow-right inline-block"/>
-  </span>
-</div>
+A presentation theme for developers
 
 ---
 
 # Features
 
-- **Animated backgrounds** — gradient blobs shift between slides
-- **Light & dark mode** — full support for both
-- **Themeable** — change colors via `themeConfig`
-- **Multiple layouts** — cover, section, fact, quote, two-cols, image, and more
-- **Code-friendly** — JetBrains Mono with clean highlighting
+- **Atmospheric backgrounds** — radial gradient blooms shift per slide
+- **Editorial typography** — Instrument Serif display, Archivo body
+- **Frosted glass** — translucent panels with backdrop blur
+- **Themeable** — change primary, secondary, and accent colors
+- **Light & dark** — full support for both modes
 
 ---
 layout: center

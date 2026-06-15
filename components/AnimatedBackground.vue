@@ -2,91 +2,95 @@
 import { computed } from 'vue'
 import { useNav } from '@slidev/client'
 
-const { currentSlideNo, clicks } = useNav()
+const { currentSlideNo } = useNav()
 
 /**
- * Generate a pseudo-random number from a seed (deterministic per slide).
- * This ensures each slide gets a unique but consistent blob arrangement.
+ * Deterministic pseudo-random from a seed.
+ * Each slide gets a unique but consistent bloom arrangement.
  */
-function seededRandom(seed: number) {
+function seeded(seed: number) {
   const x = Math.sin(seed * 127.1 + 311.7) * 43758.5453123
   return x - Math.floor(x)
 }
 
-const blobPositions = computed(() => {
-  const slide = currentSlideNo.value
-  const s1 = seededRandom(slide)
-  const s2 = seededRandom(slide + 100)
-  const s3 = seededRandom(slide + 200)
-  const s4 = seededRandom(slide + 300)
+/**
+ * Primary bloom — large radial gradient of the theme's primary color.
+ * Inspired by the "sun-bloom" from Biennale Yellow, but using theme colors.
+ */
+const primaryBloom = computed(() => {
+  const s = currentSlideNo.value
+  const cx = 30 + seeded(s) * 45         // 30%–75% horizontal
+  const cy = 20 + seeded(s + 50) * 40    // 20%–60% vertical
+  const rx = 38 + seeded(s + 100) * 18   // 38%–56% width
+  const ry = 32 + seeded(s + 150) * 16   // 32%–48% height
 
   return {
-    blob1: {
-      x: 10 + s1 * 40,
-      y: 10 + s2 * 30,
-      scale: 0.8 + s3 * 0.6,
-      rotation: s4 * 360,
-    },
-    blob2: {
-      x: 50 + s2 * 40,
-      y: 50 + s3 * 40,
-      scale: 0.7 + s1 * 0.5,
-      rotation: s2 * 360,
-    },
-    blob3: {
-      x: 20 + s3 * 60,
-      y: 60 + s4 * 30,
-      scale: 0.6 + s4 * 0.6,
-      rotation: s3 * 360,
-    },
+    background: `radial-gradient(
+      ellipse ${rx}% ${ry}% at ${cx}% ${cy}%,
+      rgba(var(--slidev-theme-primary-rgb), 0.22) 0%,
+      rgba(var(--slidev-theme-primary-rgb), 0.12) 35%,
+      rgba(var(--slidev-theme-primary-rgb), 0.04) 60%,
+      transparent 85%
+    )`,
   }
 })
 
-const blob1Style = computed(() => {
-  const b = blobPositions.value.blob1
+/**
+ * Secondary bloom — smaller, placed opposite the primary.
+ * Counter-temperature accent like the "ember-bloom".
+ */
+const secondaryBloom = computed(() => {
+  const s = currentSlideNo.value
+  const cx = 65 + seeded(s + 200) * 30   // opposite quadrant
+  const cy = 55 + seeded(s + 250) * 35
+  const size = 320 + seeded(s + 300) * 280
+
   return {
-    left: `${b.x}%`,
-    top: `${b.y}%`,
-    transform: `translate(-50%, -50%) scale(${b.scale}) rotate(${b.rotation}deg)`,
+    background: `radial-gradient(
+      circle ${size}px at ${cx}% ${cy}%,
+      rgba(var(--slidev-theme-secondary-rgb), 0.14) 0%,
+      rgba(var(--slidev-theme-secondary-rgb), 0.05) 45%,
+      transparent 75%
+    )`,
   }
 })
 
-const blob2Style = computed(() => {
-  const b = blobPositions.value.blob2
-  return {
-    left: `${b.x}%`,
-    top: `${b.y}%`,
-    transform: `translate(-50%, -50%) scale(${b.scale}) rotate(${b.rotation}deg)`,
-  }
-})
+/**
+ * Accent bloom — subtle warm touch in a corner.
+ */
+const accentBloom = computed(() => {
+  const s = currentSlideNo.value
+  const cx = 10 + seeded(s + 400) * 20
+  const cy = 70 + seeded(s + 450) * 25
+  const size = 280 + seeded(s + 500) * 200
 
-const blob3Style = computed(() => {
-  const b = blobPositions.value.blob3
   return {
-    left: `${b.x}%`,
-    top: `${b.y}%`,
-    transform: `translate(-50%, -50%) scale(${b.scale}) rotate(${b.rotation}deg)`,
+    background: `radial-gradient(
+      circle ${size}px at ${cx}% ${cy}%,
+      rgba(var(--slidev-theme-accent-rgb), 0.10) 0%,
+      transparent 65%
+    )`,
   }
 })
 </script>
 
 <template>
-  <div class="animated-bg" aria-hidden="true">
-    <!-- Gradient blobs that move per slide -->
-    <div class="blob blob-primary" :style="blob1Style" />
-    <div class="blob blob-secondary" :style="blob2Style" />
-    <div class="blob blob-accent" :style="blob3Style" />
+  <div class="aurora-bg" aria-hidden="true">
+    <!-- Atmospheric gradient blooms — shift per slide -->
+    <div class="bloom bloom-primary" :style="primaryBloom" />
+    <div class="bloom bloom-secondary" :style="secondaryBloom" />
+    <div class="bloom bloom-accent" :style="accentBloom" />
 
-    <!-- Subtle grid pattern overlay -->
-    <div class="grid-overlay" />
+    <!-- Subtle dot grid pattern -->
+    <div class="grid-pattern" />
 
-    <!-- Noise texture for depth -->
-    <div class="noise-overlay" />
+    <!-- Fine noise texture for printed-paper depth -->
+    <div class="noise-layer" />
   </div>
 </template>
 
 <style scoped>
-.animated-bg {
+.aurora-bg {
   position: fixed;
   inset: 0;
   z-index: -1;
@@ -94,64 +98,45 @@ const blob3Style = computed(() => {
   overflow: hidden;
 }
 
-.blob {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.15;
-  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform, left, top;
-}
-
-html.dark .blob {
-  opacity: 0.12;
-}
-
-.blob-primary {
-  background: radial-gradient(
-    circle,
-    var(--slidev-theme-primary) 0%,
-    transparent 70%
-  );
-}
-
-.blob-secondary {
-  background: radial-gradient(
-    circle,
-    var(--slidev-theme-secondary) 0%,
-    transparent 70%
-  );
-}
-
-.blob-accent {
-  background: radial-gradient(
-    circle,
-    var(--slidev-theme-accent, var(--slidev-theme-primary)) 0%,
-    transparent 70%
-  );
-  opacity: 0.08;
-}
-
-.grid-overlay {
+.bloom {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(var(--slidev-theme-border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--slidev-theme-border) 1px, transparent 1px);
-  background-size: 80px 80px;
-  opacity: 0.4;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+  pointer-events: none;
+  transition: background 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: background;
 }
 
-.noise-overlay {
+/* Dot grid — subtle editorial structure */
+.grid-pattern {
   position: absolute;
   inset: 0;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.25;
+  background-image: radial-gradient(
+    circle 0.8px at center,
+    var(--slidev-theme-border) 0.8px,
+    transparent 0.8px
+  );
+  background-size: 40px 40px;
+  mask-image: radial-gradient(
+    ellipse 75% 65% at 50% 50%,
+    black 20%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 75% 65% at 50% 50%,
+    black 20%,
+    transparent 100%
+  );
+}
+
+/* Noise overlay — extremely subtle for depth */
+.noise-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 256px 256px;
+  pointer-events: none;
 }
 </style>

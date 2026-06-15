@@ -14,45 +14,67 @@ const style = computed(() => handleBackground(props.background))
 
 <template>
   <div class="slidev-layout cover" :style="style">
-    <div class="my-auto w-full">
+    <!-- Geometric block tiles behind content (poster underprint) -->
+    <div class="cover-tiles" aria-hidden="true">
+      <div class="tile tile-1" />
+      <div class="tile tile-2" />
+      <div class="tile tile-3" />
+    </div>
+
+    <div class="my-auto w-full relative z-4">
       <slot />
     </div>
-    <div class="cover-decoration" aria-hidden="true">
-      <div class="cover-line" />
-      <div class="cover-line cover-line-2" />
+
+    <!-- Frosted glass footer band with gradient accent line -->
+    <div class="cover-footer" aria-hidden="true">
+      <div class="footer-line" />
     </div>
   </div>
 </template>
 
 <style scoped>
-.cover-decoration {
+.cover-tiles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  z-index: 1;
+}
+
+.tile {
+  background: rgba(var(--slidev-theme-primary-rgb), 0.06);
+}
+
+html.dark .tile {
+  background: rgba(var(--slidev-theme-primary-rgb), 0.04);
+}
+
+.tile-1 { grid-column: 1; grid-row: 5 / 8; }
+.tile-2 { grid-column: 4; grid-row: 1 / 3; }
+.tile-3 { grid-column: 2 / 4; grid-row: 7 / 9; background: rgba(var(--slidev-theme-secondary-rgb), 0.04); }
+
+html.dark .tile-3 { background: rgba(var(--slidev-theme-secondary-rgb), 0.03); }
+
+.cover-footer {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  overflow: hidden;
+  height: 3px;
+  z-index: 5;
 }
 
-.cover-line {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 40%;
-  height: 3px;
+.footer-line {
+  width: 100%;
+  height: 2px;
   background: linear-gradient(
     90deg,
-    var(--slidev-theme-primary),
-    var(--slidev-theme-secondary)
+    var(--slidev-theme-primary) 0%,
+    var(--slidev-theme-secondary) 50%,
+    transparent 100%
   );
-  border-radius: 3px;
-  opacity: 0.8;
-}
-
-.cover-line-2 {
-  left: auto;
-  right: 0;
-  width: 20%;
-  opacity: 0.3;
+  opacity: 0.6;
 }
 </style>

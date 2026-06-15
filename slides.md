@@ -1,70 +1,57 @@
 ---
 theme: ./
-title: Aurora Theme Demo
+title: Aurora Theme
 transition: morph
-# Customize colors — uncomment and change to retheme:
+# To retheme, uncomment and change:
 # themeConfig:
 #   primary: '#e11d48'
 #   secondary: '#7c3aed'
+#   accent: '#f59e0b'
 ---
 
-# Aurora Theme
+# Aurora
 
-A modern, minimal Slidev theme with animated backgrounds
-
-<div class="pt-12">
-  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" flex="~ justify-center items-center gap-2" hover="bg-white bg-opacity-10">
-    Press Space for next page <div class="i-carbon:arrow-right inline-block"/>
-  </span>
-</div>
+A presentation theme for developers
 
 ---
 
-# What is This Theme?
+# What is Aurora?
 
-Aurora is a Slidev theme built for developers who present code, diagrams, and technical content.
+An editorial-inspired Slidev theme that blends atmospheric gradients, frosted glass, and bold serif typography into a clean developer presentation system.
 
-- **Animated backgrounds** — gradient blobs shift between slides
-- **Light & dark mode** — first-class support for both
-- **Themeable** — change primary/secondary colors in frontmatter
-- **Multiple layouts** — cover, section, fact, quote, two-cols, image, and more
-- **Code-friendly** — clean syntax highlighting with JetBrains Mono
-- **Modern CSS** — smooth transitions, subtle grid pattern, noise texture
-
-<br>
-
-> The background subtly animates as you navigate between slides.
+- **Atmospheric backgrounds** — radial gradient blooms shift per slide
+- **Editorial typography** — Instrument Serif display, Archivo body
+- **Frosted glass** — translucent panels with backdrop blur
+- **Themeable** — change primary, secondary, and accent colors
+- **Light & dark** — full support for both modes
+- **Hairline rules** — clean 1px separators, no heavy borders
 
 ---
 layout: section
 ---
 
-# Section Layout
-
-Use this to introduce a new topic
+# Code & Syntax
 
 ---
 
-# Code Highlighting
+# TypeScript
 
-TypeScript with line highlighting and TwoSlash hover types
+Syntax highlighting with line stepping and TwoSlash hover types.
 
-```ts {all|1-3|5-9|11-14|all} twoslash
-import { ref, computed, watch } from 'vue'
+```ts {all|1-2|4-8|10-13|all} twoslash
+import { ref, computed } from 'vue'
 
+// Reactive state
 const slides = ref<string[]>([])
+const count = computed(() => slides.value.length)
 
-// Reactive computed property
-const slideCount = computed(() => slides.value.length)
-
-// Add a slide to the deck
 function addSlide(content: string) {
   slides.value.push(content)
 }
 
-watch(slideCount, (count) => {
-  console.log(`Deck now has ${count} slides`)
-})
+// Template literal types
+type SlideLayout = `layout-${'cover' | 'default' | 'section'}`
+type Route = `/${string}`
 ```
 
 ---
@@ -74,28 +61,32 @@ watch(slideCount, (count) => {
 <div grid="~ cols-2 gap-6">
 
 ```python
-# Python example
 from dataclasses import dataclass
+from typing import Optional
 
 @dataclass
 class Slide:
     title: str
     layout: str = "default"
+    notes: Optional[str] = None
 
     def render(self) -> str:
         return f"<h1>{self.title}</h1>"
 ```
 
 ```rust
-// Rust example
+#[derive(Debug)]
 struct Slide {
     title: String,
     layout: String,
 }
 
 impl Slide {
-    fn render(&self) -> String {
-        format!("<h1>{}</h1>", self.title)
+    fn new(title: &str) -> Self {
+        Self {
+            title: title.into(),
+            layout: "default".into(),
+        }
     }
 }
 ```
@@ -108,41 +99,45 @@ layout: two-cols
 
 # Two Columns
 
-Content flows naturally into two columns. Great for comparing concepts side by side.
+Content flows into two columns, separated by generous spacing. Ideal for comparing concepts or pairing text with code.
 
-- Left column for text
-- Bullet points
-- Descriptions
+- Left column for explanation
+- Numbered steps or bullet points
+- Descriptive prose
 
 ::right::
 
+<div class="glass mt-4">
+
 ```yaml
-# Right column for code
+# Theme configuration
 theme: ./
-title: My Presentation
 themeConfig:
   primary: '#6366f1'
   secondary: '#06b6d4'
+  accent: '#f59e0b'
 ```
 
-<br>
+</div>
 
-Or anything else — images, diagrams, lists.
+<p class="micro-label mt-6">Configuration</p>
+
+Override any color in your frontmatter to completely retheme the presentation.
 
 ---
 layout: image-right
 image: https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800
 ---
 
-# Image Right Layout
+# Image Right
 
-Perfect for pairing visuals with content.
+Pair visuals with content. The image fills the right half while your text gets generous editorial padding on the left.
 
-- Explain a concept
+- Explain the concept
 - Show the result
 - Clean split layout
 
-The image fills the right half of the slide.
+Works with any image URL or local path.
 
 ---
 layout: quote
@@ -158,7 +153,7 @@ layout: fact
 
 # 60fps
 
-Smooth animations powered by CSS transitions
+Smooth transitions between every slide
 
 ---
 layout: statement
@@ -170,7 +165,7 @@ layout: statement
 
 # Diagrams
 
-Mermaid diagrams render beautifully in both light and dark mode.
+Mermaid renders cleanly in both modes.
 
 <div class="grid grid-cols-2 gap-8 pt-4">
 
@@ -190,7 +185,7 @@ sequenceDiagram
     participant T as Theme
     U->>S: slides.md
     S->>T: Apply theme
-    T-->>S: Styled slides
+    T-->>S: Styled output
     S-->>U: Presentation
 ```
 
@@ -198,14 +193,14 @@ sequenceDiagram
 
 ---
 
-# Math & LaTeX
+# Mathematics
 
 Inline math: $E = mc^2$ and $\nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0}$
 
-Block equations:
+Block equations with step-through:
 
-$$
-\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+$$ {1|2|all}
+\int_{-\infty}^{\infty} e^{-x^2}\, dx = \sqrt{\pi}
 $$
 
 $$
@@ -216,74 +211,60 @@ $$
 
 # Tables
 
+Hairline-rule separators keep tables clean and readable.
+
 | Feature | Light Mode | Dark Mode |
 |---------|-----------|-----------|
-| Background | Soft white with gradient blobs | Deep navy with gradient blobs |
-| Code blocks | Light gray surface | Dark navy surface |
-| Text | High contrast dark | Soft white |
-| Accents | Vibrant primary/secondary | Same, slightly muted |
-
----
-
-# Theming
-
-Override the default colors in your frontmatter:
-
-```yaml
----
-themeConfig:
-  primary: '#e11d48'    # Rose
-  secondary: '#7c3aed'  # Violet
----
-```
-
-Available CSS variables:
-
-| Variable | Default | Purpose |
-|----------|---------|---------|
-| `--slidev-theme-primary` | `#6366f1` | Headings, accents, links |
-| `--slidev-theme-secondary` | `#06b6d4` | Gradients, decorations |
-| `--slidev-theme-accent` | `#f59e0b` | Third blob color |
+| Background | Warm parchment with gradient blooms | Deep navy with gradient blooms |
+| Code blocks | Frosted glass on light surface | Frosted glass on dark surface |
+| Typography | Instrument Serif display, dark ink | Instrument Serif display, light ink |
+| Accents | Vibrant primary/secondary gradients | Same palette, adjusted opacity |
 
 ---
 transition: glow
 ---
 
-# Transitions
+# Theming
 
-This theme includes two custom transitions:
+<div class="grid grid-cols-2 gap-8">
+<div>
 
-**`morph`** (default) — slides shift vertically with a subtle blur
-
-**`glow`** — slides scale with a brightness glow effect
-
-Set per-slide or globally:
+Override the default palette in your frontmatter:
 
 ```yaml
 ---
-transition: glow    # per-slide
+themeConfig:
+  primary: '#e11d48'
+  secondary: '#7c3aed'
+  accent: '#f59e0b'
 ---
 ```
 
-```yaml
----
-transition: morph   # global default in frontmatter
----
-```
+The entire theme — blooms, gradients, accents, links, code highlights — adapts to your colors.
+
+</div>
+<div>
+
+<p class="micro-label mb-4">CSS Variables</p>
+
+| Variable | Default |
+|----------|---------|
+| `--slidev-theme-primary` | `#6366f1` |
+| `--slidev-theme-secondary` | `#06b6d4` |
+| `--slidev-theme-accent` | `#f59e0b` |
+
+<p class="micro-label mt-6 mb-4">Transitions</p>
+
+**`morph`** — vertical shift with subtle blur<br>
+**`glow`** — scale with brightness bloom
+
+</div>
+</div>
 
 ---
-layout: center
-class: text-center
+layout: end
 ---
 
-# Get Started
-
-Use this theme in your project:
-
-```yaml
----
-theme: ./path/to/theme
----
-```
+# Thank you
 
 [Slidev Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev)

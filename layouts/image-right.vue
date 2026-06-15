@@ -7,14 +7,18 @@ const props = defineProps({
     type: String,
     default: undefined,
   },
+  backgroundSize: {
+    type: String,
+    default: 'cover',
+  },
 })
 
-const style = computed(() => handleBackground(props.image, false))
+const style = computed(() => handleBackground(props.image, false, props.backgroundSize))
 </script>
 
 <template>
   <div class="slidev-layout image-right">
-    <div class="p-10 flex flex-col justify-center">
+    <div class="flex flex-col justify-center" style="padding: var(--slidev-theme-pad-edge);">
       <slot />
     </div>
     <div class="w-full h-full" :style="style" />

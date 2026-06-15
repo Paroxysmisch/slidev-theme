@@ -1,9 +1,11 @@
 /* ============================================
-   Theme Color System
+   Aurora Theme — Color System
+
    Users override via headmatter themeConfig:
      themeConfig:
        primary: '#6366f1'
-       secondary: '#ec4899'
+       secondary: '#06b6d4'
+       accent: '#f59e0b'
    ============================================ */
 
 :root {
@@ -13,30 +15,45 @@
   --slidev-theme-secondary: #06b6d4;
   --slidev-theme-secondary-rgb: 6, 182, 212;
   --slidev-theme-accent: #f59e0b;
+  --slidev-theme-accent-rgb: 245, 158, 11;
 
-  /* Surface colors - light mode */
-  --slidev-theme-bg: #fafafa;
-  --slidev-theme-bg-rgb: 250, 250, 250;
+  /* Surface colors — light mode: warm parchment-inspired ground */
+  --slidev-theme-bg: #f6f5f1;
+  --slidev-theme-bg-rgb: 246, 245, 241;
   --slidev-theme-surface: #ffffff;
-  --slidev-theme-text: #1e1e2e;
-  --slidev-theme-text-secondary: #585868;
-  --slidev-theme-border: rgba(0, 0, 0, 0.08);
-  --slidev-theme-code-bg: #f4f4f8;
-  --slidev-theme-code-border: rgba(0, 0, 0, 0.06);
+  --slidev-theme-surface-rgb: 255, 255, 255;
+  --slidev-theme-ink: #1a1a2e;
+  --slidev-theme-ink-secondary: #4a4a5e;
+  --slidev-theme-border: rgba(26, 26, 46, 0.12);
+  --slidev-theme-border-soft: rgba(26, 26, 46, 0.06);
+  --slidev-theme-code-bg: rgba(26, 26, 46, 0.04);
+  --slidev-theme-code-border: rgba(26, 26, 46, 0.08);
 
-  /* Animation */
-  --slidev-theme-transition-speed: 0.5s;
+  /* Frosted glass */
+  --slidev-theme-glass-bg: rgba(255, 255, 255, 0.6);
+  --slidev-theme-glass-border: rgba(255, 255, 255, 0.5);
+  --slidev-theme-glass-blur: 20px;
+
+  /* Spacing — generous editorial padding */
+  --slidev-theme-pad-edge: clamp(40px, 4vw, 76px);
+  --slidev-theme-pad-region: clamp(40px, 4.2vw, 80px);
 }
 
 html.dark {
-  --slidev-theme-bg: #0f0f17;
-  --slidev-theme-bg-rgb: 15, 15, 23;
-  --slidev-theme-surface: #1a1a2e;
-  --slidev-theme-text: #e4e4ef;
-  --slidev-theme-text-secondary: #9898ad;
-  --slidev-theme-border: rgba(255, 255, 255, 0.08);
-  --slidev-theme-code-bg: #16162a;
+  --slidev-theme-bg: #0c0c14;
+  --slidev-theme-bg-rgb: 12, 12, 20;
+  --slidev-theme-surface: #16162a;
+  --slidev-theme-surface-rgb: 22, 22, 42;
+  --slidev-theme-ink: #e8e8f0;
+  --slidev-theme-ink-secondary: #9898ad;
+  --slidev-theme-border: rgba(232, 232, 240, 0.1);
+  --slidev-theme-border-soft: rgba(232, 232, 240, 0.05);
+  --slidev-theme-code-bg: rgba(255, 255, 255, 0.04);
   --slidev-theme-code-border: rgba(255, 255, 255, 0.06);
+
+  /* Frosted glass — dark */
+  --slidev-theme-glass-bg: rgba(22, 22, 42, 0.55);
+  --slidev-theme-glass-border: rgba(255, 255, 255, 0.08);
 }
 
 /* ============================================
@@ -44,41 +61,60 @@ html.dark {
    ============================================ */
 
 .slidev-layout {
-  color: var(--slidev-theme-text);
+  color: var(--slidev-theme-ink);
   position: relative;
   overflow: hidden;
+  padding: var(--slidev-theme-pad-edge);
 }
 
-/* Headings */
+/* ============================================
+   Typography — Editorial System
+
+   Display: Instrument Serif (tight, negative tracking)
+   Body: Archivo (clean, readable)
+   Mono: JetBrains Mono (data, code, metadata)
+   ============================================ */
+
+/* Display headings — Instrument Serif editorial treatment */
 .slidev-layout h1 {
-  @apply font-bold;
-  font-size: 2.75rem;
-  line-height: 1.2;
-  letter-spacing: -0.025em;
-  color: var(--slidev-theme-text);
+  font-family: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: clamp(40px, min(4.6vw, 7vh), 88px);
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  color: var(--slidev-theme-ink);
+  margin-bottom: 0.5em;
 }
 
 .slidev-layout h2 {
-  @apply font-semibold;
-  font-size: 1.75rem;
-  line-height: 1.3;
-  letter-spacing: -0.015em;
-  color: var(--slidev-theme-text);
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(28px, min(3vw, 5vh), 48px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--slidev-theme-ink);
+  margin-bottom: 0.4em;
 }
 
 .slidev-layout h3 {
-  @apply font-semibold;
-  font-size: 1.35rem;
-  color: var(--slidev-theme-text);
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(22px, 1.7vw, 32px);
+  line-height: 1.15;
+  color: var(--slidev-theme-ink);
+  margin-bottom: 0.3em;
 }
 
-/* Paragraph */
+/* Body text */
 .slidev-layout p {
-  color: var(--slidev-theme-text-secondary);
-  line-height: 1.75;
+  font-family: 'Archivo', 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: clamp(14px, 0.95vw, 16px);
+  line-height: 1.6;
+  color: var(--slidev-theme-ink-secondary);
 }
 
-/* Links */
+/* Links — subtle underline, primary color */
 .slidev-layout a {
   color: var(--slidev-theme-primary);
   text-decoration: none;
@@ -93,74 +129,135 @@ html.dark {
 /* Lists */
 .slidev-layout ul,
 .slidev-layout ol {
-  color: var(--slidev-theme-text-secondary);
-  line-height: 2;
+  font-family: 'Archivo', 'Inter', sans-serif;
+  color: var(--slidev-theme-ink-secondary);
+  line-height: 1.8;
+  font-size: clamp(14px, 0.95vw, 16px);
 }
 
 .slidev-layout li::marker {
   color: var(--slidev-theme-primary);
 }
 
-/* Strong / emphasis */
+/* Strong — stays in ink */
 .slidev-layout strong {
-  color: var(--slidev-theme-text);
+  color: var(--slidev-theme-ink);
   font-weight: 600;
 }
 
 /* Inline code */
 .slidev-layout code:not(pre code) {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
   background: var(--slidev-theme-code-bg);
   border: 1px solid var(--slidev-theme-code-border);
-  border-radius: 5px;
-  padding: 0.15em 0.4em;
-  font-size: 0.88em;
+  border-radius: 3px;
+  padding: 0.12em 0.35em;
+  font-size: 0.85em;
   color: var(--slidev-theme-primary);
 }
 
-/* Code blocks */
+/* Code blocks — frosted glass treatment */
 .slidev-layout pre {
-  background: var(--slidev-theme-code-bg) !important;
-  border: 1px solid var(--slidev-theme-code-border);
-  border-radius: 10px;
+  background: var(--slidev-theme-glass-bg) !important;
+  backdrop-filter: blur(var(--slidev-theme-glass-blur));
+  -webkit-backdrop-filter: blur(var(--slidev-theme-glass-blur));
+  border: 1px solid var(--slidev-theme-glass-border);
+  border-radius: 8px;
   padding: 1.25em;
 }
 
-/* Tables */
+/* Tables — hairline rules only */
 .slidev-layout table {
-  @apply w-full;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .slidev-layout th {
-  color: var(--slidev-theme-text);
+  font-family: 'Archivo', sans-serif;
   font-weight: 600;
-  border-bottom: 2px solid var(--slidev-theme-border);
-  padding: 0.5em 1em;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: clamp(10px, 0.75vw, 12px);
+  color: var(--slidev-theme-ink);
+  border-bottom: 1px solid var(--slidev-theme-ink);
+  padding: 0.6em 1em;
   text-align: left;
 }
 
 .slidev-layout td {
-  color: var(--slidev-theme-text-secondary);
-  border-bottom: 1px solid var(--slidev-theme-border);
-  padding: 0.5em 1em;
+  font-family: 'Archivo', sans-serif;
+  color: var(--slidev-theme-ink-secondary);
+  border-bottom: 1px solid var(--slidev-theme-border-soft);
+  padding: 0.6em 1em;
+  font-size: clamp(13px, 0.9vw, 15px);
 }
 
-/* Blockquotes */
+/* Blockquotes — editorial, serif italic */
 .slidev-layout blockquote {
-  border-left: 3px solid var(--slidev-theme-primary);
-  padding-left: 1em;
-  margin: 1em 0;
-  color: var(--slidev-theme-text-secondary);
+  font-family: 'Instrument Serif', Georgia, serif;
   font-style: italic;
+  font-size: clamp(24px, min(3vw, 5vh), 48px);
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  color: var(--slidev-theme-ink);
+  border-left: none;
+  padding-left: 0;
+  margin: 0;
+  position: relative;
+}
+
+.slidev-layout blockquote p {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
 }
 
 /* KBD */
 .slidev-layout kbd {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
   background: var(--slidev-theme-code-bg);
   border: 1px solid var(--slidev-theme-border);
-  border-radius: 4px;
+  border-radius: 3px;
   padding: 0.1em 0.4em;
-  font-size: 0.85em;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  font-size: 0.82em;
+}
+
+/* Hairline rule — the only separator */
+.slidev-layout hr {
+  border: none;
+  border-top: 1px solid var(--slidev-theme-border);
+  margin: 1.5em 0;
+}
+
+/* ============================================
+   Micro-label utility
+   Archivo weight 600, uppercase, wide-tracked
+   ============================================ */
+
+.micro-label,
+.slidev-layout .micro-label {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: clamp(10px, 0.78vw, 13px);
+  line-height: 1.2;
+  color: var(--slidev-theme-ink);
+}
+
+/* ============================================
+   Frosted glass panel utility
+   ============================================ */
+
+.glass,
+.slidev-layout .glass {
+  background: var(--slidev-theme-glass-bg);
+  backdrop-filter: blur(var(--slidev-theme-glass-blur));
+  -webkit-backdrop-filter: blur(var(--slidev-theme-glass-blur));
+  border: 1px solid var(--slidev-theme-glass-border);
+  border-radius: 8px;
+  padding: 1.5em;
 }
 
 /* ============================================
@@ -169,11 +266,123 @@ html.dark {
 
 .slidev-layout.cover,
 .slidev-layout.intro {
-  @apply h-full grid;
+  display: grid;
+  height: 100%;
+  padding: var(--slidev-theme-pad-edge);
 
   h1 {
-    font-size: 3.5rem;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(72px, min(9vw, 14vh), 180px);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--slidev-theme-ink);
+  }
+
+  h1 + p {
+    margin-top: clamp(8px, 1vh, 18px);
+    font-family: 'Archivo', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: clamp(11px, 0.85vw, 14px);
+    color: var(--slidev-theme-ink-secondary);
+    opacity: 0.8;
+  }
+
+  p + h2,
+  ul + h2,
+  table + h2 {
+    margin-top: 2em;
+  }
+}
+
+/* ============================================
+   Section Layout
+   ============================================ */
+
+.slidev-layout.section {
+  display: grid;
+  height: 100%;
+  place-content: center;
+  padding: var(--slidev-theme-pad-edge);
+
+  h1 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(60px, min(8vw, 12vh), 160px);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* ============================================
+   Statement Layout — centered serif, atmospheric
+   ============================================ */
+
+.slidev-layout.statement {
+  display: grid;
+  height: 100%;
+  place-content: center;
+  text-align: center;
+  padding: clamp(60px, 8vw, 140px);
+
+  h1 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(36px, min(5vw, 8vh), 80px);
     line-height: 1.15;
+    letter-spacing: -0.005em;
+  }
+}
+
+/* ============================================
+   Quote Layout — editorial quote spread
+   ============================================ */
+
+.slidev-layout.quote {
+  display: grid;
+  height: 100%;
+  place-content: center;
+  padding: clamp(60px, 8vw, 140px);
+
+  blockquote {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(32px, min(4.4vw, 7vh), 72px);
+    line-height: 1.1;
+    letter-spacing: -0.005em;
+    color: var(--slidev-theme-ink);
+    padding: 0;
+  }
+
+  blockquote + p {
+    margin-top: clamp(18px, 2vh, 32px);
+    padding-top: clamp(12px, 1.4vh, 20px);
+    border-top: 1px solid var(--slidev-theme-border);
+    font-family: 'Archivo', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: clamp(11px, 0.85vw, 13px);
+    color: var(--slidev-theme-ink-secondary);
+  }
+}
+
+/* ============================================
+   Fact Layout — jumbo numeral/word display
+   ============================================ */
+
+.slidev-layout.fact {
+  display: grid;
+  height: 100%;
+  place-content: center;
+  text-align: center;
+
+  h1 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(120px, min(16vw, 28vh), 360px);
+    line-height: 0.85;
     letter-spacing: -0.03em;
     background: linear-gradient(
       135deg,
@@ -186,99 +395,13 @@ html.dark {
   }
 
   h1 + p {
-    @apply -mt-2 opacity-60 mb-4;
-    font-size: 1.25rem;
-  }
-
-  p + h2,
-  ul + h2,
-  table + h2 {
-    @apply mt-10;
-  }
-}
-
-/* ============================================
-   Section Layout
-   ============================================ */
-
-.slidev-layout.section {
-  @apply h-full grid place-content-center;
-
-  h1 {
-    font-size: 3rem;
-    background: linear-gradient(
-      135deg,
-      var(--slidev-theme-primary) 0%,
-      var(--slidev-theme-secondary) 100%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-}
-
-/* ============================================
-   Statement Layout
-   ============================================ */
-
-.slidev-layout.statement {
-  @apply h-full grid place-content-center text-center px-20;
-
-  h1 {
-    font-size: 2.5rem;
-    line-height: 1.4;
-    font-weight: 500;
-    letter-spacing: -0.015em;
-  }
-}
-
-/* ============================================
-   Quote Layout
-   ============================================ */
-
-.slidev-layout.quote {
-  @apply h-full grid place-content-center px-24;
-
-  blockquote {
-    border-left: 4px solid var(--slidev-theme-primary);
-    padding-left: 1.5em;
-    font-size: 1.5rem;
-    line-height: 1.6;
-    font-style: italic;
-    color: var(--slidev-theme-text);
-  }
-
-  blockquote + p {
-    padding-left: 1.75em;
-    margin-top: 1em;
-    font-size: 1rem;
-    color: var(--slidev-theme-text-secondary);
-  }
-}
-
-/* ============================================
-   Fact Layout
-   ============================================ */
-
-.slidev-layout.fact {
-  @apply h-full grid place-content-center text-center;
-
-  h1 {
-    font-size: 6rem;
-    line-height: 1;
-    background: linear-gradient(
-      135deg,
-      var(--slidev-theme-primary) 0%,
-      var(--slidev-theme-secondary) 100%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  h1 + p {
-    @apply mt-2 opacity-60;
-    font-size: 1.25rem;
+    margin-top: 0.5em;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: clamp(11px, 0.85vw, 14px);
+    color: var(--slidev-theme-ink-secondary);
   }
 }
 
@@ -288,17 +411,20 @@ html.dark {
 
 .slidev-layout.image-right,
 .slidev-layout.image-left {
-  @apply h-full grid gap-0;
+  display: grid;
+  height: 100%;
+  gap: 0;
   grid-template-columns: 1fr 1fr;
+  padding: 0;
+}
+
+.slidev-layout.image-right > :first-child,
+.slidev-layout.image-left > :last-child {
+  padding: var(--slidev-theme-pad-edge);
 }
 
 .slidev-layout.image-left {
   grid-template-columns: 1fr 1fr;
-  direction: rtl;
-}
-
-.slidev-layout.image-left > * {
-  direction: ltr;
 }
 
 /* ============================================
@@ -306,23 +432,18 @@ html.dark {
    ============================================ */
 
 .slidev-layout.two-cols {
-  @apply h-full grid gap-8;
+  display: grid;
+  height: 100%;
+  gap: clamp(24px, 3vw, 56px);
   grid-template-columns: 1fr 1fr;
+  padding: var(--slidev-theme-pad-edge);
 }
 
 /* ============================================
-   Slide number / page indicator
+   Custom Transitions
    ============================================ */
 
-.slidev-page-indicator {
-  color: var(--slidev-theme-text-secondary);
-  opacity: 0.5;
-}
-
-/* ============================================
-   Custom Transition: Morph
-   ============================================ */
-
+/* Morph — vertical shift + blur */
 .morph-enter-active,
 .morph-leave-active {
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -340,10 +461,7 @@ html.dark {
   filter: blur(4px);
 }
 
-/* ============================================
-   Custom Transition: Glow
-   ============================================ */
-
+/* Glow — scale + brightness */
 .glow-enter-active,
 .glow-leave-active {
   transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
@@ -362,7 +480,7 @@ html.dark {
 }
 
 /* ============================================
-   Selection color
+   Selection
    ============================================ */
 
 .slidev-layout ::selection {
@@ -370,11 +488,11 @@ html.dark {
 }
 
 /* ============================================
-   Scrollbar styling
+   Scrollbar
    ============================================ */
 
 .slidev-layout ::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
 
 .slidev-layout ::-webkit-scrollbar-thumb {

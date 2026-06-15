@@ -1,5 +1,5 @@
 <template>
-  <div class="slidev-layout two-cols p-10">
+  <div class="slidev-layout two-cols">
     <div class="col-left">
       <slot name="default" />
     </div>
