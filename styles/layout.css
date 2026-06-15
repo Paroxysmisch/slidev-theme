@@ -28,13 +28,13 @@
   --slidev-theme-border-soft: rgba(26, 26, 46, 0.06);
 
   /* Frosted glass */
-  --slidev-theme-glass-bg: rgba(246, 245, 241, 0.5);
-  --slidev-theme-glass-border: rgba(255, 255, 255, 0.6);
+  --slidev-theme-glass-bg: rgba(255, 255, 255, 0.55);
+  --slidev-theme-glass-border: rgba(255, 255, 255, 0.7);
   --slidev-theme-glass-blur: 20px;
 
-  /* Override Slidev's code block variables for glass effect */
-  --slidev-code-background: rgba(246, 245, 241, 0.45);
-  --slidev-code-radius: 8px;
+  /* Code blocks — transparent by default */
+  --slidev-code-background: transparent;
+  --slidev-code-radius: 10px;
 
   /* Spacing — generous editorial padding */
   --slidev-theme-pad-edge: clamp(40px, 4vw, 76px);
@@ -52,11 +52,11 @@ html.dark {
   --slidev-theme-border-soft: rgba(232, 232, 240, 0.05);
 
   /* Frosted glass — dark */
-  --slidev-theme-glass-bg: rgba(12, 12, 20, 0.45);
-  --slidev-theme-glass-border: rgba(255, 255, 255, 0.06);
+  --slidev-theme-glass-bg: rgba(40, 40, 70, 0.5);
+  --slidev-theme-glass-border: rgba(255, 255, 255, 0.1);
 
-  /* Override Slidev's code block variables — dark glass */
-  --slidev-code-background: rgba(12, 12, 20, 0.4);
+  /* Code blocks — transparent by default */
+  --slidev-code-background: transparent;
 }
 
 /* ============================================
@@ -164,25 +164,31 @@ html.dark {
   color: var(--slidev-theme-primary) !important;
 }
 
-/* Code blocks — frosted glass (override .slidev-code hard bg) */
-.slidev-layout pre,
-.slidev-code-wrapper,
-.slidev-code {
-  backdrop-filter: blur(var(--slidev-theme-glass-blur)) !important;
-  -webkit-backdrop-filter: blur(var(--slidev-theme-glass-blur)) !important;
-  border: 1px solid var(--slidev-theme-glass-border) !important;
+/* Code blocks — frosted glass
+   .slidev-code carries Slidev's background + border-radius via CSS vars.
+   We strip the outer pre/wrapper so only .slidev-code draws the box. */
+.slidev-layout pre {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+.slidev-code-wrapper {
+  border: none !important;
+  background: none !important;
 }
 
 .slidev-code {
-  background: var(--slidev-code-background) !important;
+  background: transparent !important;
+  border: none !important;
 }
 
-/* Code block title / tab bar — also glass */
 .slidev-code-block-title,
 .slidev-code-group-tabs {
-  background: var(--slidev-code-background) !important;
-  backdrop-filter: blur(var(--slidev-theme-glass-blur)) !important;
-  -webkit-backdrop-filter: blur(var(--slidev-theme-glass-blur)) !important;
+  background: transparent !important;
+  border: none !important;
 }
 
 /* Tables — hairline rules only, serif body */
