@@ -560,6 +560,37 @@ html.dark {
 }
 
 /* ============================================
+   Click animations — default enter/exit
+   ============================================ */
+
+.slidev-vclick-target {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slidev-vclick-hidden {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+
+/* Named presets */
+
+.slidev-vclick-anim-fade.slidev-vclick-hidden {
+  opacity: 0;
+  transform: none;
+}
+
+.slidev-vclick-anim-up.slidev-vclick-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.slidev-vclick-anim-scale.slidev-vclick-hidden {
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+/* ============================================
    Code line highlighting — fade transitions
    ============================================ */
 

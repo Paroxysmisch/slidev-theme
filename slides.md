@@ -20,12 +20,16 @@ A presentation theme for developers
 
 An editorial-inspired Slidev theme that blends atmospheric gradients, frosted glass, and bold serif typography into a clean developer presentation system.
 
+<v-clicks>
+
 - **Atmospheric backgrounds** — radial gradient blooms shift per slide
-- **Editorial typography** — Instrument Serif display, Archivo body
+- **Editorial typography** — Instrument Serif display, Source Serif body
 - **Frosted glass** — translucent panels with backdrop blur
 - **Themeable** — change primary, secondary, and accent colors
 - **Light & dark** — full support for both modes
 - **Hairline rules** — clean 1px separators, no heavy borders
+
+</v-clicks>
 
 ---
 layout: section
@@ -102,9 +106,13 @@ layout: two-cols
 
 Content flows into two columns, separated by generous spacing. Ideal for comparing concepts or pairing text with code.
 
+<v-clicks>
+
 - Left column for explanation
 - Numbered steps or bullet points
 - Descriptive prose
+
+</v-clicks>
 
 ::right::
 
@@ -134,9 +142,13 @@ image: https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800
 
 Pair visuals with content. The image fills the right half while your text gets generous editorial padding on the left.
 
+<v-clicks>
+
 - Explain the concept
 - Show the result
 - Clean split layout
+
+</v-clicks>
 
 Works with any image URL or local path.
 
@@ -205,8 +217,12 @@ Hairline-rule separators keep tables clean and readable.
 
 The theme provides `<Ref>` and `<Footnote>` components for inline citations<Ref n="1" /> that reference notes at the bottom of the slide<Ref n="2" />.
 
+<v-clicks>
+
 - Use `<Ref n="1" />` inline to place a superscript mark
 - Use `<Footnote n="1">Text</Footnote>` at the end of the slide for the note
+
+</v-clicks>
 
 Footnotes stack from the bottom and use JetBrains Mono numbering with Source Serif 4 body text<Ref n="3" />.
 
