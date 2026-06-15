@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { handleBackground } from '../composables/background'
 import { computed } from 'vue'
+import configs from '#slidev/configs'
 
 const props = defineProps({
   background: {
@@ -10,6 +11,7 @@ const props = defineProps({
 })
 
 const style = computed(() => handleBackground(props.background))
+const author = computed(() => (configs as any).themeConfig?.author || '')
 </script>
 
 <template>
@@ -23,6 +25,7 @@ const style = computed(() => handleBackground(props.background))
 
     <div class="my-auto w-full relative z-4">
       <slot />
+      <div v-if="author" class="cover-author">{{ author }}</div>
     </div>
 
     <!-- Frosted glass footer band with gradient accent line -->
@@ -33,6 +36,17 @@ const style = computed(() => handleBackground(props.background))
 </template>
 
 <style scoped>
+.cover-author {
+  margin-top: clamp(16px, 2vh, 28px);
+  font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  font-size: clamp(14px, 1.1vw, 18px);
+  color: var(--slidev-theme-ink-secondary);
+  opacity: 0.6;
+}
+
 .cover-tiles {
   position: absolute;
   inset: 0;

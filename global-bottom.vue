@@ -10,16 +10,13 @@ const totalSlides = computed(() => nav.total.value)
 const progress = computed(() => (currentSlideNo.value / totalSlides.value) * 100)
 
 const presentationTitle = computed(() => configs.slidesTitle || 'Untitled')
+const author = computed(() => (configs as any).themeConfig?.author || '')
 
 const currentLayout = computed(() => {
   const route = nav.slides.value?.[currentSlideNo.value - 1]
   return route?.meta?.layout || (currentSlideNo.value === 1 ? 'cover' : 'default')
 })
 
-/**
- * Walk backwards from the current slide to find the most recent
- * section/cover heading to use as the current section name.
- */
 const currentSection = computed(() => {
   const allSlides = nav.slides.value
   if (!allSlides) return presentationTitle.value
@@ -47,6 +44,7 @@ const hidden = computed(() => {
     </div>
     <div class="bar-content">
       <span class="bar-section">{{ currentSection }}</span>
+      <span v-if="author" class="bar-author">{{ author }}</span>
       <span class="bar-page">
         {{ String(currentSlideNo).padStart(2, '0') }}
         <span class="bar-sep">/</span>
@@ -99,6 +97,13 @@ const hidden = computed(() => {
   text-transform: uppercase;
   letter-spacing: 0.16em;
   font-size: clamp(9px, 0.65vw, 11px);
+}
+
+.bar-author {
+  font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(10px, 0.72vw, 12px);
+  letter-spacing: 0.02em;
 }
 
 .bar-sep {

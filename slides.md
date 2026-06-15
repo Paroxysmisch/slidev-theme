@@ -2,8 +2,9 @@
 theme: ./
 title: Aurora Theme
 transition: morph
+themeConfig:
+  author: Yash
 # To retheme, uncomment and change:
-# themeConfig:
 #   primary: '#e11d48'
 #   secondary: '#7c3aed'
 #   accent: '#f59e0b'
