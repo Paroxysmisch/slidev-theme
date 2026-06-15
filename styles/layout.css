@@ -179,13 +179,11 @@ html.dark {
   font-weight: 600;
 }
 
-/* Inline code — glass treatment */
+/* Inline code */
 .slidev-layout :not(pre) > code {
   font-family: 'JetBrains Mono', ui-monospace, monospace !important;
-  background: var(--slidev-theme-glass-bg) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--slidev-theme-glass-border) !important;
+  background: var(--slidev-theme-border-soft) !important;
+  border: 1px solid var(--slidev-theme-border) !important;
   border-radius: 4px !important;
   padding: 0.12em 0.35em !important;
   font-size: 0.85em !important;
