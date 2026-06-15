@@ -208,6 +208,19 @@ transition: glow     # scale with brightness bloom
 
 Rendered automatically on every slide via `global-top.vue`. Three colored gradient blooms shift position per slide using GPU-composited `transform` animations.
 
+### Footnotes
+
+Use `<Ref>` for inline superscript marks and `<Footnote>` for the notes at the bottom of the slide:
+
+```md
+Some claim<Ref n="1" /> and another point<Ref n="2" />.
+
+<Footnote n="1">Source: Author, Title, 2024</Footnote>
+<Footnote n="2">See also: example.com/paper</Footnote>
+```
+
+Footnotes stack upward from the bottom of the slide. Up to 5 footnotes per slide are supported.
+
 ### Charts (Unovis + shadcn-vue)
 
 The theme includes [shadcn-vue chart components](https://www.shadcn-vue.com/docs/components/chart) in `components/ui/chart/`. Build bar charts, line graphs, and more using Unovis:

@@ -200,6 +200,21 @@ Hairline-rule separators keep tables clean and readable.
 | Accents | Vibrant primary/secondary gradients | Same palette, adjusted opacity |
 
 ---
+
+# Footnotes
+
+The theme provides `<Ref>` and `<Footnote>` components for inline citations<Ref n="1" /> that reference notes at the bottom of the slide<Ref n="2" />.
+
+- Use `<Ref n="1" />` inline to place a superscript mark
+- Use `<Footnote n="1">Text</Footnote>` at the end of the slide for the note
+
+Footnotes stack from the bottom and use JetBrains Mono numbering with Source Serif 4 body text<Ref n="3" />.
+
+<Footnote n="1">Footnotes are positioned absolutely at the bottom of each slide.</Footnote>
+<Footnote n="2">Multiple footnotes stack upward automatically.</Footnote>
+<Footnote n="3">Styling matches the theme's editorial typography system.</Footnote>
+
+---
 layout: section
 ---
 
