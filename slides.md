@@ -221,6 +221,67 @@ Hairline-rule separators keep tables clean and readable.
 | Accents | Vibrant primary/secondary gradients | Same palette, adjusted opacity |
 
 ---
+layout: section
+---
+
+# Charts & Data
+
+---
+
+# Bar Charts
+
+Use Mermaid's `xychart-beta` — no extra dependencies needed.
+
+<div class="grid grid-cols-2 gap-8 mt-2">
+
+```mermaid {scale: 0.55}
+xychart-beta
+    title "Monthly Revenue (2026)"
+    x-axis [Jan, Feb, Mar, Apr, May, Jun]
+    y-axis "Revenue ($k)" 0 --> 120
+    bar [42, 58, 71, 63, 89, 108]
+```
+
+````md
+```mermaid
+xychart-beta
+    title "Monthly Revenue (2026)"
+    x-axis [Jan, Feb, Mar, Apr, May, Jun]
+    y-axis "Revenue ($k)" 0 --> 120
+    bar [42, 58, 71, 63, 89, 108]
+```
+````
+
+</div>
+
+---
+
+# Line Graphs
+
+Track trends with line series — or combine bars and lines on the same chart.
+
+<div class="grid grid-cols-2 gap-8 mt-2">
+
+```mermaid {scale: 0.55}
+xychart-beta
+    title "Users vs Engagement"
+    x-axis [Q1, Q2, Q3, Q4]
+    y-axis "Count (k)" 0 --> 200
+    bar [80, 110, 145, 182]
+    line [45, 72, 98, 134]
+```
+
+```mermaid {scale: 0.55}
+xychart-beta
+    title "Latency Over Time (ms)"
+    x-axis [Jan, Feb, Mar, Apr, May, Jun]
+    y-axis "p95 Latency" 0 --> 500
+    line [320, 280, 245, 190, 165, 142]
+```
+
+</div>
+
+---
 transition: glow
 ---
 

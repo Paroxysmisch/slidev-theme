@@ -191,6 +191,19 @@ html.dark {
   border: none !important;
 }
 
+/* Mermaid diagrams — transparent, contained sizing */
+.mermaid {
+  background: transparent !important;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.mermaid svg {
+  background: transparent !important;
+  max-width: 100%;
+  height: auto;
+}
+
 /* Tables — hairline rules only, serif body */
 .slidev-layout table {
   width: 100%;
