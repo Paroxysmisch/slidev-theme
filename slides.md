@@ -198,14 +198,14 @@ sequenceDiagram
 
 Inline math: $E = mc^2$ and $\nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0}$
 
-Block equations with step-through:
+Block equations with line-by-line step-through:
 
-$$ {1|2|all}
-\int_{-\infty}^{\infty} e^{-x^2}\, dx = \sqrt{\pi}
-$$
-
-$$
-f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n
+$$ {1|2|3|all}
+\begin{aligned}
+\nabla \times \vec{\mathbf{B}} - \frac{1}{c}\frac{\partial \vec{\mathbf{E}}}{\partial t} &= \frac{4\pi}{c}\vec{\mathbf{j}} \\
+\nabla \cdot \vec{\mathbf{E}} &= 4\pi\rho \\
+\nabla \times \vec{\mathbf{E}} + \frac{1}{c}\frac{\partial \vec{\mathbf{B}}}{\partial t} &= \vec{\mathbf{0}}
+\end{aligned}
 $$
 
 ---

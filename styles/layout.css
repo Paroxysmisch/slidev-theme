@@ -560,6 +560,32 @@ html.dark {
 }
 
 /* ============================================
+   Code line highlighting — fade transitions
+   ============================================ */
+
+.slidev-code .line,
+.slidev-code .slidev-code-highlighted,
+.slidev-code .slidev-code-dishonored {
+  transition: opacity 0.4s ease;
+}
+
+/* ============================================
+   KaTeX line highlighting — fade transitions
+   ============================================ */
+
+.slidev-katex-wrapper .mord {
+  transition: opacity 0.4s ease;
+}
+
+.slidev-katex-wrapper .mord.highlighted {
+  opacity: 1;
+}
+
+.slidev-katex-wrapper .mord.dishonored {
+  opacity: 0.15;
+}
+
+/* ============================================
    Selection
    ============================================ */
 
