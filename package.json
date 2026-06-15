@@ -1,0 +1,39 @@
+{
+  "name": "slidev-theme-aurora",
+  "version": "0.1.0",
+  "type": "module",
+  "keywords": [
+    "slidev-theme",
+    "slidev"
+  ],
+  "engines": {
+    "node": ">=20.12.0"
+  },
+  "scripts": {
+    "build": "slidev build slides.md",
+    "dev": "slidev slides.md --open",
+    "export": "slidev export slides.md",
+    "screenshot": "slidev export slides.md --format png"
+  },
+  "dependencies": {
+    "@slidev/types": "^52.16.0"
+  },
+  "devDependencies": {
+    "@slidev/cli": "^52.16.0"
+  },
+  "slidev": {
+    "colorSchema": "both",
+    "defaults": {
+      "fonts": {
+        "sans": "Inter",
+        "serif": "Playfair Display",
+        "mono": "JetBrains Mono"
+      },
+      "transition": "morph",
+      "themeConfig": {
+        "primary": "#6366f1",
+        "secondary": "#06b6d4"
+      }
+    }
+  }
+}
