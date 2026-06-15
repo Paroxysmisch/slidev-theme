@@ -227,59 +227,53 @@ layout: section
 # Charts & Data
 
 ---
-
-# Bar Charts
-
-Use Mermaid's `xychart-beta` — no extra dependencies needed.
-
-<div class="grid grid-cols-2 gap-8 mt-2">
-
-```mermaid {scale: 0.55}
-xychart-beta
-    title "Monthly Revenue (2026)"
-    x-axis [Jan, Feb, Mar, Apr, May, Jun]
-    y-axis "Revenue ($k)" 0 --> 120
-    bar [42, 58, 71, 63, 89, 108]
-```
-
-````md
-```mermaid
-xychart-beta
-    title "Monthly Revenue (2026)"
-    x-axis [Jan, Feb, Mar, Apr, May, Jun]
-    y-axis "Revenue ($k)" 0 --> 120
-    bar [42, 58, 71, 63, 89, 108]
-```
-````
-
-</div>
-
+layout: two-cols
 ---
 
-# Line Graphs
+# Bar Chart
 
-Track trends with line series — or combine bars and lines on the same chart.
+Grouped bar chart built with Unovis + shadcn-vue chart components. Fully themed, with tooltips on hover.
 
-<div class="grid grid-cols-2 gap-8 mt-2">
+<p class="micro-label mt-4">Dependencies</p>
 
-```mermaid {scale: 0.55}
-xychart-beta
-    title "Users vs Engagement"
-    x-axis [Q1, Q2, Q3, Q4]
-    y-axis "Count (k)" 0 --> 200
-    bar [80, 110, 145, 182]
-    line [45, 72, 98, 134]
+```bash
+bun add @unovis/ts @unovis/vue reka-ui
 ```
 
-```mermaid {scale: 0.55}
-xychart-beta
-    title "Latency Over Time (ms)"
-    x-axis [Jan, Feb, Mar, Apr, May, Jun]
-    y-axis "p95 Latency" 0 --> 500
-    line [320, 280, 245, 190, 165, 142]
+Chart colors adapt to light/dark mode via `--chart-1` through `--chart-5` CSS variables.
+
+::right::
+
+<DemoBarChart class="mt-8" />
+
+---
+layout: two-cols
+---
+
+# Line Chart
+
+Multi-series line chart with smooth monotone curves. Hover for crosshair tooltips.
+
+<p class="micro-label mt-4">Usage</p>
+
+```vue
+<script setup>
+import { VisLine, VisXYContainer } from '@unovis/vue'
+import { ChartContainer } from './ui/chart'
+</script>
+
+<template>
+  <ChartContainer :config="chartConfig">
+    <VisXYContainer :data="data">
+      <VisLine :x="xFn" :y="yFn" />
+    </VisXYContainer>
+  </ChartContainer>
+</template>
 ```
 
-</div>
+::right::
+
+<DemoLineChart class="mt-8" />
 
 ---
 transition: glow

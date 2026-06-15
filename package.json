@@ -16,7 +16,12 @@
     "screenshot": "slidev export slides.md --format png"
   },
   "dependencies": {
-    "@slidev/types": "^52.16.0"
+    "@slidev/types": "^52.16.0",
+    "@unovis/ts": "^1.6.5",
+    "@unovis/vue": "^1.6.5",
+    "clsx": "^2.1.1",
+    "reka-ui": "^2.9.10",
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
     "@slidev/cli": "^52.16.0"

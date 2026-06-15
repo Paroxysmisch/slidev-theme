@@ -36,6 +36,21 @@
   --slidev-code-background: transparent;
   --slidev-code-radius: 10px;
 
+  /* Chart colors (shadcn-vue / Unovis) */
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+
+  /* Shadcn color tokens used by chart components */
+  --background: var(--slidev-theme-bg);
+  --foreground: var(--slidev-theme-ink);
+  --muted-foreground: var(--slidev-theme-ink-secondary);
+  --border: var(--slidev-theme-border);
+  --muted: var(--slidev-theme-border-soft);
+  --font-sans: 'Archivo', sans-serif;
+
   /* Spacing — generous editorial padding */
   --slidev-theme-pad-edge: clamp(40px, 4vw, 76px);
   --slidev-theme-pad-region: clamp(40px, 4.2vw, 80px);
@@ -50,6 +65,19 @@ html.dark {
   --slidev-theme-ink-secondary: #9898ad;
   --slidev-theme-border: rgba(232, 232, 240, 0.1);
   --slidev-theme-border-soft: rgba(232, 232, 240, 0.05);
+
+  /* Chart colors — dark */
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+
+  --background: var(--slidev-theme-bg);
+  --foreground: var(--slidev-theme-ink);
+  --muted-foreground: var(--slidev-theme-ink-secondary);
+  --border: var(--slidev-theme-border);
+  --muted: var(--slidev-theme-border-soft);
 
   /* Frosted glass — dark */
   --slidev-theme-glass-bg: rgba(40, 40, 70, 0.5);
