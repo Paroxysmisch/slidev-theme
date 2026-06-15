@@ -19,6 +19,7 @@
     "@slidev/types": "^52.16.0",
     "@unovis/ts": "^1.6.5",
     "@unovis/vue": "^1.6.5",
+    "@vue-flow/core": "^1.48.2",
     "clsx": "^2.1.1",
     "reka-ui": "^2.9.10",
     "tailwind-merge": "^3.6.0"

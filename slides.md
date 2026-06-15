@@ -164,33 +164,11 @@ layout: statement
 
 ---
 
-# Diagrams
+# Flowcharts
 
-Mermaid renders cleanly in both modes.
+Interactive flowcharts built with [Vue Flow](https://vueflow.dev). Nodes use frosted glass styling with themed input/output colors.
 
-<div class="grid grid-cols-2 gap-8 pt-4">
-
-```mermaid {scale: 0.7}
-graph LR
-    A[Markdown] -->|parse| B(AST)
-    B -->|transform| C[Vue SFC]
-    C -->|compile| D[Slides]
-    style A fill:#6366f1,color:#fff,stroke:none
-    style D fill:#06b6d4,color:#fff,stroke:none
-```
-
-```mermaid {scale: 0.7}
-sequenceDiagram
-    participant U as User
-    participant S as Slidev
-    participant T as Theme
-    U->>S: slides.md
-    S->>T: Apply theme
-    T-->>S: Styled output
-    S-->>U: Presentation
-```
-
-</div>
+<DemoFlowchart />
 
 ---
 
